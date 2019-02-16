@@ -7,7 +7,7 @@ const bot = new Discord.Client({disableEveryone: false});
 
 function changing_status() {
 
-    let status = ['Watching over SCPF..', 'Say :help if you need me!', 'Made by DesiredMercury..']
+    let status = ['Watching over SCPF..', 'Say :help if you need me!', 'Made by Color3fromHSL..']
 
     let random = status[Math.floor(Math.random() * status.length)]
 
