@@ -52,7 +52,9 @@ bot.on("message", async message => {
     if(cmd === `${prefix}pay`){
      let Embed = Discord.RichEmbed()
      .setDescription("Select one of these payment methods.")
-     .addField("**Paypal Payment.**", "https://paypal.me/ColoredProductions"
+     .addField("**Paypal Payment.**", "https://paypal.me/ColoredProductions")
+               
+        message.channel.send(Embed)
     }    
 });
 
