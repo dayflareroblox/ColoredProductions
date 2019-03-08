@@ -9,7 +9,7 @@ function changing_status() {
 
     let status = ['Say :help for help', 'If you need anyone higher, contact support.']
 
-    let random = status[Math.floor(Math.2() * status.length)]
+    let random = status[Math.floor(Math.random() * status.length)]
 
     bot.user.setActivity(random)
 
