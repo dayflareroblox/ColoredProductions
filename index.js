@@ -172,7 +172,8 @@ if(cmd === `${prefix}verify`){
         })
     })
 }
-    
+   
+
 });
 
 bot.login(process.env.BOT_TOKEN);
