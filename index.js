@@ -62,8 +62,19 @@ bot.on("message", async message => {
     }  
     
  //---------------------------------------------------------------\\//---------------------------------------------------------------\\
-    
-    if(cmd === `${prefix}pay`){
+ 
+ if(cmd === `${prefix}cmds`){
+    let Embed = new Discord.RichEmbed()
+    .setDescription("Welcome to the commands menu, select an option from below.")
+    .addField("**Current Commands:**", ":pay, :help, :cmds")
+
+              
+       message.channel.send(Embed)
+   }  
+   
+//---------------------------------------------------------------\\//---------------------------------------------------------------\\   
+   
+if(cmd === `${prefix}pay`){
      let Embed = new Discord.RichEmbed()
      .setDescription("Select one of these payment methods.")
      .addField("**Paypal Payment.**", "https://paypal.me/ColoredProductions")
