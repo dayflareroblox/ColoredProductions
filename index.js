@@ -49,6 +49,20 @@ bot.on("message", async message => {
 }  
  
  //---------------------------------------------------------------\\//---------------------------------------------------------------\\
+
+    if(cmd === `${prefix}help`){
+     let Embed = new Discord.RichEmbed()
+     .setDescription("Welcome to the help menu, select one of the options below:")
+     .addField("Commands.", "use :cmds for a list of commands.")
+     .addField("External Help.", "Message a member of the support team for extra help.")
+     .addField("Owner.", "Message Color3fromHSL if you urgently need him.")
+     .setFooter("Copyrighted.")
+               
+        message.channel.send(Embed)
+    }  
+    
+ //---------------------------------------------------------------\\//---------------------------------------------------------------\\
+    
     if(cmd === `${prefix}pay`){
      let Embed = new Discord.RichEmbed()
      .setDescription("Select one of these payment methods.")
@@ -56,7 +70,10 @@ bot.on("message", async message => {
      .addField("**Robux Payment.**", "To pay in robux you need to have the funds in your group and ready for purchase, your sales rep should tell you how much you need to pay wich is equivilant to paypal.")
                
         message.channel.send(Embed)
-    }    
+    }  
+    
+ //---------------------------------------------------------------\\//---------------------------------------------------------------\\
+    
 });
 
 bot.login(process.env.BOT_TOKEN);
