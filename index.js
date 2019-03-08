@@ -53,6 +53,7 @@ bot.on("message", async message => {
      let Embed = new Discord.RichEmbed()
      .setDescription("Select one of these payment methods.")
      .addField("**Paypal Payment.**", "https://paypal.me/ColoredProductions")
+     .addField("**Robux Payment.", "To pay in robux you need to have the funds in your group and ready for purchase, your sales rep should tell you how much you need to pay wich is equivilant to paypal."
                
         message.channel.send(Embed)
     }    
