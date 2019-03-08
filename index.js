@@ -53,9 +53,9 @@ bot.on("message", async message => {
     if(cmd === `${prefix}help`){
      let Embed = new Discord.RichEmbed()
      .setDescription("Welcome to the help menu, select one of the options below:")
-     .addField("Commands.", "use :cmds for a list of commands.")
-     .addField("External Help.", "Message a member of the support team for extra help.")
-     .addField("Owner.", "Message Color3fromHSL if you urgently need him.")
+     .addField("**Commands.**", "use :cmds for a list of commands.")
+     .addField("**External Help.**", "Message a member of the support team for extra help.")
+     .addField("**Owner.**", "Message Color3fromHSL if you urgently need him.")
      .setFooter("Copyrighted.")
                
         message.channel.send(Embed)
