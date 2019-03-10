@@ -93,12 +93,11 @@ if(cmd === `${prefix}pay`){
    let string = '';
 
    bot.guilds.forEach(guild => {
-       string += '***Server Name:*** ' + guild.name + '\n' + '***Server ID:***` ' + guild.id + ' ` ' + '\n\n';
+       string += '**Server Name:** ' + guild.name + '\n' + '**Server ID:**` ' + guild.id + ' ` ' + '\n\n';
 
    })
 
    let botembed = new Discord.RichEmbed()
-       .setColor("#000FF")
        .addField("Bot is On ", string)
        .setTimestamp()
        .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL);
