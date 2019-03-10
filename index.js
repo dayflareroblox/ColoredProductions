@@ -138,7 +138,6 @@ if(cmd === `${prefix}profile`){
     let embed = new Discord.RichEmbed()
         .setThumbnail(user.avatarURL)
         .addField("**User Name:**", user.username)
-        .addField("**User Status:**", user.status)
         .addField("**User ID:**", user.id)
         .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL)
         .setTimestamp()       
