@@ -114,9 +114,7 @@ if(cmd === `${prefix}pay`){
 
  if(cmd === `${prefix}reboot`){
 
-   if(message.content === prefix + "reboot") { 
-      if (message.author.id !== ownerID) {
-        message.channel.send(":gear: Reload in process")
+   if (message.author.id !== ownerID) return message.channel.send("You are not authorized to use this command.");
         
         bot.destroy()
         bot.login(process.env.TOKEN)
@@ -125,10 +123,7 @@ if(cmd === `${prefix}pay`){
          
       message.channel.send("Only the Owner of this bot can do that !")
         
-        }
-        }  
-
-  }  
+        }   
 
 });
 bot.login(process.env.BOT_TOKEN);
