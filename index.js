@@ -130,7 +130,18 @@ if(cmd === `${prefix}pay`){
 
 //---------------------------------------------------------------\\//---------------------------------------------------------------\\ 
 
+if(cmd === `${prefix}profile`){
 
+    let user = message.mentions.users.first() || message.author;
+    
+
+    const embed = new Discord.MessageEmbed()
+        .setTitle(user.username)
+        .setImage(user.avatarURL({size: 2048}))
+        
+
+    message.channel.send(embed)    
+}
          
 });
 
