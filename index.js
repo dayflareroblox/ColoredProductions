@@ -5,7 +5,6 @@ const bot = new Discord.Client({disableEveryone: false});
 
 const ownerID = '481171799204429834';
 
-const YTDL = require("ytdl-core");
 
 
 
