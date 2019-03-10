@@ -92,7 +92,7 @@ if(cmd === `${prefix}pay`){
    if (message.author.id !== ownerID) return message.channel.send("You are not authorized to use this command.");
    let string = '';
 
-   client.guilds.forEach(guild => {
+   bot.guilds.forEach(guild => {
        string += '***Server Name:*** ' + guild.name + '\n' + '***Server ID:***` ' + guild.id + ' ` ' + '\n\n';
 
    })
