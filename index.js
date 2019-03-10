@@ -129,99 +129,51 @@ if(cmd === `${prefix}pay`){
 
 //---------------------------------------------------------------\\//---------------------------------------------------------------\\ 
 
-function play(connection, message) {
-    var server = servers[message.guild.id];
-    server.dispatcher = connection.playStream(YTDL(server.queue[0], {
-        filter: "audioonly"
-    }));
+if(cmd === `${prefix}play`){
 
-    server.queue.shift();
-
-    server.dispatcher.on("end", function() {
-        if (server.queue[0]) play(connection, message);
-        else connection.disconnect();
-    });
-
-}
-var servers = {};
-client.on("message", async message => {
-    var args = message.content.substring(prefix.length).split(" ");
-    if (!message.content.startsWith(prefix)) return;
-    switch (args[0].toLowerCase()) {
-        case "mplay":
-            if (!message.guild.member(client.user).hasPermission('SPEAK')) return message.channel.send('**Sorry, but i cant join/speak in this channel!**').catch(console.error);
-            if (!args[1]) {
-                message.channel.send("**Please provide a URL YouTube link to me to play song.**");
-                return;
+    const voiceChannel = msg.member.voiceChannel;
+    if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
+    if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+        const playlist = await youtube.getPlaylist(url);
+        const videos = await playlist.getVideos();
+        for (const video of Object.values(videos)) {
+            const video2 = await youtube.getVideoByID(video.id);
+            await handleVideo(video2, msg, voiceChannel, true);
+        }
+        return msg.channel.send(`✅ Playlist: **${playlist.title}** has been added to the queue!`);
+    } else {
+        try {
+            var video = await youtube.getVideo(url);
+        } catch (error) {
+            try {
+                var videos = await youtube.searchVideos(searchString, 10);
+                let index = 0;
+                msg.channel.send(`
+__**Song selection:**__
+${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
+Please provide a value to select one of the 🔎 results ranging from 1-10.
+            `);
+                try {
+                    var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
+                        maxMatches: 1,
+                        time: 10000,
+                        errors: ['time']
+                    });
+                } catch (err) {
+                    console.error(err);
+                    return msg.channel.send('No or invalid value entered, cancelling video selection.');
+                }
+                const videoIndex = parseInt(response.first().content);
+                var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
+            } catch (err) {
+                console.error(err);
+                return msg.channel.send('🆘 I could not obtain any search results.');
             }
-
-            if (!message.member.voiceChannel) {
-                message.channel.send("**I think it may work better if you are in a voice channel!**");
-                return;
-            }
-
-            if (console.error) {
-                message.channel.send("**Sorry, but i cant search videos in YouTube! Provide a link to play!**");
-                return;
-            }
-
-            if (!servers[message.guild.id]) servers[message.guild.id] = {
-                queue: []
-            };
-
-            var server = servers[message.guild.id];
-
-            server.queue.push(args[1]);
-
-            message.channel.sendMessage('``You song has been added to the queue.``')
-            if (!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
-                play(connection, message);
-            });
-            break;
-        case "mstop":
-            var server = servers[message.guild.id];
-            if (!message.member.voiceChannel) {
-                message.channel.send("**I think it may work better if you are in a voice channel!**");
-                return;
-            }
-
-            if (message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-            message.channel.send('``The queue of songs removed.``');
-            break;
-        case "mskip":
-            if (!message.member.voiceChannel) {
-                message.channel.send("**I think it may work better if you are in a voice channel!**");
-                return;
-            }
-
-            var server = servers[message.guild.id];
-            if (server.dispatcher) server.dispatcher.end();
-            message.channel.send('``The song has been sucessfully skipped.``');
-            break;
-        case "mpause":
-            if (!message.member.voiceChannel) {
-                message.channel.send("**I think it may work better if you are in a voice channel!**");
-                return;
-            }
-
-            var server = servers[message.guild.id];
-            if (server.dispatcher) server.dispatcher.pause();
-            message.channel.send('``The song is paused.``');
-            break;
-        case "mresume":
-            if (!message.member.voiceChannel) {
-                message.channel.send("**I think it may work better if you are in a voice channel!**");
-                return;
-            }
-
-            var server = servers[message.guild.id];
-            if (server.dispatcher) server.dispatcher.resume();
-            message.channel.send('``The song is sucessfully continued.``');
-            break;
+        }
+        return handleVideo(video, msg, voiceChannel);
     }
+}
+         
 });
 
-
-
-});
 bot.login(process.env.BOT_TOKEN);
