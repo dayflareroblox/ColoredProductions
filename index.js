@@ -135,7 +135,7 @@ if(cmd === `${prefix}profile`){
     let user = message.mentions.users.first() || message.author;
     
 
-    const embed = new Discord.MessageEmbed()
+    let embed = new Discord.RichEmbed()
         .setTitle(user.username)
         .setImage(user.avatarURL({size: 2048}))
         
