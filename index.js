@@ -58,8 +58,9 @@ bot.on("message", async message => {
      .addField("**Commands.**", "use :cmds for a list of commands.")
      .addField("**External Help.**", "Message a member of the support team for extra help.")
      .addField("**Owner.**", "Message Color3fromHSL if you urgently need him.")
-     .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL);
-               
+     .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL)
+     .setTimestamp(); 
+                   
         message.channel.send(Embed)
     }  
     
@@ -69,7 +70,8 @@ bot.on("message", async message => {
     let Embed = new Discord.RichEmbed()
     .setDescription("Welcome to the commands menu, select an option from below.")
     .addField("**Current Commands:**", ":pay, :help, :cmds, :servers")
-    .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL);
+    .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL)
+    .setTimestamp();    
 
               
        message.channel.send(Embed)
@@ -82,8 +84,9 @@ if(cmd === `${prefix}pay`){
      .setDescription("Select one of these payment methods.")
      .addField("**Paypal Payment.**", "https://paypal.me/ColoredProductions")
      .addField("**Robux Payment.**", "To pay in robux you need to have the funds in your group and ready for purchase, your sales rep should tell you how much you need to pay wich is equivilant to paypal.")
-     .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL);     
-               
+     .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL)     
+     .setTimestamp();
+
         message.channel.send(Embed)
     }  
     
