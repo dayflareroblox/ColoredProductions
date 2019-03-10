@@ -117,7 +117,7 @@ if(cmd === `${prefix}pay`){
    if (message.author.id !== ownerID) return message.channel.send("You are not authorized to use this command.");
         
         bot.destroy()
-        bot.login(process.env.TOKEN)
+        bot.login(process.env.BOT_TOKEN)
       message.channel.send(":gear: Reload has been done")
       } else {
          
