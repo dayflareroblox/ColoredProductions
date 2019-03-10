@@ -69,7 +69,7 @@ bot.on("message", async message => {
  if(cmd === `${prefix}cmds`){
     let Embed = new Discord.RichEmbed()
     .setDescription("Welcome to the commands menu, select an option from below.")
-    .addField("**Current Commands:**", ":pay, :help, :cmds, :servers")
+    .addField("**Current Commands:**", ":pay, :help, :cmds, :servers, :kickbot")
     .setFooter("Command Ran By: " + message.author.username, message.author.avatarURL)
     .setTimestamp();    
 
