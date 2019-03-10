@@ -138,7 +138,8 @@ if(cmd === `${prefix}profile`){
     let embed = new Discord.RichEmbed()
         .setTitle(user.username)
         .setThumbnail(user.avatarURL)
-        .setInterval(1)
+        .addField("**User Status:**", user.status)
+        .addField("**User ID:**", user.id)
         
 
     message.channel.send(embed)    
