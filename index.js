@@ -112,5 +112,23 @@ if(cmd === `${prefix}pay`){
   
  //---------------------------------------------------------------\\//---------------------------------------------------------------\\ 
 
+ if(cmd === `${prefix}servers`){
+
+   if(message.content === prefix + "reboot") { 
+      if (message.author.id !== ownerID) {
+        message.channel.send(":gear: Reload in process")
+        
+        bot.destroy()
+        bot.login(process.env.TOKEN)
+      message.channel.send(":gear: Reload has been done")
+      } else {
+         
+      message.channel.send("Only the Owner of this bot can do that !")
+        
+        }
+        }  
+
+  }  
+
 });
 bot.login(process.env.BOT_TOKEN);
