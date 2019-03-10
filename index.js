@@ -137,7 +137,7 @@ if(cmd === `${prefix}profile`){
 
     let embed = new Discord.RichEmbed()
         .setTitle(user.username)
-        .setImage(user.avatarURL({size: 2048}))
+        .setImage(user.avatarURL)
         
 
     message.channel.send(embed)    
